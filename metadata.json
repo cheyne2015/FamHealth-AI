@@ -1,0 +1,7 @@
+{
+  "name": "家庭健康管理AI系统",
+  "description": "自动按时间整理每位家庭成员的医疗健康报告，对比提醒相同指标异常变化，并提供专业AI健康提问功能。",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

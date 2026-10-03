@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "members": {
+      "title": "FamilyMember",
+      "description": "Family members managed in the health portal",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "relationship": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string", "enum": ["female", "male"] },
+        "bloodType": { "type": "string" },
+        "avatarColor": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "healthStatusSummary": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "gender", "age"]
+    },
+    "reports": {
+      "title": "MedicalReport",
+      "description": "Medical inspection and lab test reports",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "memberId": { "type": "string" },
+        "hospital": { "type": "string" },
+        "department": { "type": "string" },
+        "testDate": { "type": "string" },
+        "reportType": { "type": "string" },
+        "overallStatus": { "type": "string" },
+        "indicators": { "type": "array" },
+        "aiSummary": { "type": "string" }
+      },
+      "required": ["id", "memberId", "testDate", "indicators"]
+    },
+    "alerts": {
+      "title": "AnomalyAlert",
+      "description": "Abnormal medical alerts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "memberId": { "type": "string" },
+        "indicatorName": { "type": "string" },
+        "currentValue": { "type": "number" },
+        "unit": { "type": "string" },
+        "normalRange": { "type": "string" },
+        "level": { "type": "string" },
+        "trend": { "type": "string" },
+        "clinicalRiskAdvice": { "type": "string" },
+        "recommendedDepartment": { "type": "string" }
+      },
+      "required": ["id", "memberId", "indicatorName", "level"]
+    },
+    "chat_messages": {
+      "title": "AIChatMessage",
+      "description": "AI clinical consultation chat history per family member",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "memberId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "assistant", "system"] },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "relatedMemberName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "memberId", "role", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/members/{memberId}": {
+      "schema": "members",
+      "description": "Family member profiles"
+    },
+    "/reports/{reportId}": {
+      "schema": "reports",
+      "description": "Medical inspection reports"
+    },
+    "/alerts/{alertId}": {
+      "schema": "alerts",
+      "description": "Cross-time anomaly alerts"
+    },
+    "/chat_messages/{messageId}": {
+      "schema": "chat_messages",
+      "description": "AI clinical consultation message records"
+    }
+  }
+}

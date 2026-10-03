@@ -1,0 +1,20 @@
+# Dependencies & Build artifacts
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+
+# Environment variables & secrets
+.env*
+!.env.example
+
+# Exclude sensitive cloud database IDs & private credentials
+firebase-applet-config.json
+!.firebase-applet-config.example.json
+
+# Local binaries and browser automation artifacts
+chrome/
+.cache/
+*.tmp
